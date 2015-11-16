@@ -15,13 +15,11 @@ enum class Screen(@LayoutRes private val layoutResId: Int,
 
     MAIN(R.layout.main) {
         override fun onBind() {
-            // The closures below can't reference [this] for some reason. I think it's a Kotlin bug.
-            val screen = this
             findViewById<View>(R.id.enumsmatter).setOnClickListener {
-                screen.goTo(ENUMSMATTER)
+                goTo(ENUMSMATTER)
             }
             findViewById<View>(R.id.tshirt).setOnClickListener {
-                screen.goTo(T_SHIRT)
+                goTo(T_SHIRT)
             }
         }
     },
@@ -30,11 +28,9 @@ enum class Screen(@LayoutRes private val layoutResId: Int,
 
     T_SHIRT(R.layout.tshirt, R.string.tshirt_title) {
         override fun onBind() {
-            // The closures below can't reference [this] for some reason. I think it's a Kotlin bug.
-            val screen = this
             val intent = Intent(ACTION_VIEW, Uri.parse("https://teespring.com/enumsmatter"))
             findViewById<View>(R.id.button).setOnClickListener { view ->
-                screen.activity.startActivity(intent)
+                activity.startActivity(intent)
             }
         }
     };
